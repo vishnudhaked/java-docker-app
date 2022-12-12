@@ -36,6 +36,7 @@ pipeline {
 	}
 	stage("Deploy webapp in QAT Env") {
 		steps {
+			sh 'sudo docker rm -f ${sudo docker ps -a -q)'
 			sh 'sudo  docker run -dit --name web1 -p 8080:8080 srronak/java:$BUILD_TAG'
 			}
 	}
