@@ -32,6 +32,12 @@ pipeline {
 				sh 'sudo docker tag srronak_java:$BUILD_TAG srronak/java:$BUILD_TAG'
 				sh 'sudo docker push srronak/java:$BUILD_TAG'
 			}
+		}
+	stage("Deploy webapp in QAT Env") {
+		steps {
+			sshagent(['QA_ENV_SSH_CRED']) {
+				sh 'ssh -o StrictHostKeyChecking=false ubuntu@13.233.125.120  sudo docker run -dit -p 8080:8080 --name javaapp srronak/java:$BUILD_TAG'
+				}
 	}
     }
 }
