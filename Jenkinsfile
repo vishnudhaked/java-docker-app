@@ -16,8 +16,13 @@ pipeline {
         
         stage('Build by Maven Package') {
             steps {
-                sh 'mvn clean package'
+                sh 'sudo mvn clean package'
             }
+        }
+        stage('Build Docker Image') {
+            steps {
+                   sh 'docker build -t srronak_java:$BUILD_TAG .'
+                }
         }
     }
 }
