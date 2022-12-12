@@ -42,7 +42,7 @@ pipeline {
 	}
 	stage ("Test website") {
 		steps {
-			sh 'curl --slient http://13.233.125.120:8080:java-web-app | grep -i sr'
+			sh 'curl --slient http://13.233.125.120:8080/java-web-app | grep -i sr'
 			}
 	}
     }
