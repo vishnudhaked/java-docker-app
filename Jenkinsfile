@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                   sh 'docker build -t srronak_java:$BUILD_TAG .'
+                   sh 'sudo docker build -t srronak_java:$BUILD_TAG .'
                 }
         }
     }
