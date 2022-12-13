@@ -21,10 +21,9 @@ pipeline {
 				sh 'sudo docker tag java-repo:$BUILD_TAG srronak/pipeline-java:$BUILD_TAG'
 				}
 			}
-		stage("Dockerhub")
-			steps {
 				
 		}
 
 
 	}
+}
