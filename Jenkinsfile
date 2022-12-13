@@ -1,6 +1,6 @@
 pipeline {
 	agent {	
-		label 'pipeline1'
+		label 'pipeline-1'
 		}
 	stages {
 		stage("SCM") {
