@@ -50,6 +50,13 @@ pipeline {
 					}
 				}	
 		}
+		stage("Prod Env") {
+			steps {
+			 sshagent(['ubuntu']) {
+	                    sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.140.187 sudo docker run  -d  -p  49153:8080  srronak/javatest-app:$BUILD_TAG"
+				}
+			}
+		}
 	}
 }
 
