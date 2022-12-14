@@ -40,7 +40,9 @@ pipeline {
 			}
 		stage("testing website") {
 			steps {
+				retry(5) {
 				sh 'curl --silent http://65.2.140.187:8080/java-web-app/ | grep -i -e  "(india|sr)" '
+				}
 				}
 			}
 		stage("Approval status") {
