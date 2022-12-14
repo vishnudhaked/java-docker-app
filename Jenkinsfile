@@ -37,6 +37,19 @@ pipeline {
 				sh 'sudo docker run -dit -p 8080:8080 --name web11 srronak/pipeline-java:$BUILD_TAG'
 				}
 			}
+		stage("testing website") {
+			steps {
+				sh 'curl --silent http://15.206.28.99:8080/java-web-app/  grep -i -e  "(india|sr)" '
+				}
+			}
+		stage("Approval status") {
+			steps {
+				script {
+					 Boolean userInput = input(id: 'Proceed1', message: 'Promote build?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
+                echo 'userInput: ' + userInput
+					}
+				}	
+		}
 	}
 }
 
