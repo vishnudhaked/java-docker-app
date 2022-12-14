@@ -41,7 +41,7 @@ pipeline {
 		stage("testing website") {
 			steps {
 				retry(5) {
-				sh 'curl --silent http://65.2.140.187:8080/java-web-app/ | grep -i -e  "(india|sr)" '
+				sh 'curl --silent http://65.2.140.187:8080/java-web-app/ | grep -i "india" '
 					}
 				}
 			}
@@ -57,7 +57,7 @@ pipeline {
 		stage("Prod Env") {
 			steps {
 			 sshagent(['ubuntu']) {
-			    sh 'ssh -o StrictHostKeyChecking=no ubuntu@65.2.140.187 sudo docker rm -f $(sudo docker ps -a -q)'
+			    sh 'ssh -o StrictHostKeyChecking=no ubuntu@65.2.140.187 sudo docker rm -f $(sudo docker ps -a -q)' 
 	                    sh "ssh -o StrictHostKeyChecking=no ubuntu@65.2.140.187 sudo docker run  -d  -p  49153:8080  srronak/javatest-app:$BUILD_TAG"
 				}
 			}
