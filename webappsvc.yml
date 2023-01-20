@@ -1,3 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pipe-test
+  name: pipe-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pipe-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pipe-test
+    spec:
+      containers:
+      - image: public.ecr.aws/o4o3y6s3/k8s-image:latest
+        name: k8s-image
+        resources: {}
+status: {}
+
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,8 +33,8 @@ metadata:
 spec:
   selector:
     app: myjavawebapp
-  type: NodePort
+  type: LoadBalance
   ports:
     - nodePort: 30000
-      port: 8080
+      port: 8081
       targetPort: 8080
