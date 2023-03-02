@@ -22,12 +22,12 @@ pipeline {
 				
 		stage("QAT Testing") {
 			steps {
-				sh 'sudo docker run -dit -p 9001:8080  srronak/pipeline-java:$BUILD_TAG'
+				sh 'sudo docker run -dit -p 9191:8080  srronak/pipeline-java:$BUILD_TAG'
 				}
 			}
 		stage("testing website") {
 			steps {
-				sh 'curl --silent http://43.205.112.213:9001/java-web-app/ '
+				sh 'curl --silent http://43.205.112.213:9191/java-web-app/ '
 				}
 			}
 
